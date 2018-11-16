@@ -1,31 +1,51 @@
 package tudelft.leapyear;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class LeapYearTest {
+
+    private LeapYear systemUnderTest = new LeapYear();
+
+    /**
+     * First Partition: Numbers divisible by 4 and not divisible by 100
+     */
     @Test
     public void leapYearsThatAreNonCenturialYears() {
-        LeapYear ly = new LeapYear();
-        boolean result = ly.isLeapYear(2016);
-        Assertions.assertTrue(result);
+        assertTrue(systemUnderTest.isLeapYear(2016));
+        assertTrue(systemUnderTest.isLeapYear(2020));
     }
 
+    /**
+     * Second Partition: Divisible by 4, divisible by 100, but also divisible by 400
+     */
     @Test
     public void leapCenturialYears() {
-        LeapYear ly = new LeapYear();
-        Assertions.assertTrue(ly.isLeapYear(2000));
+        assertTrue(systemUnderTest.isLeapYear(2000));
     }
 
-    @Test
-    public void nonLeapCenturialYears() {
-        LeapYear ly = new LeapYear();
-        Assertions.assertFalse(ly.isLeapYear(1500));
-    }
-
+    /**
+     * Third Partition: Not divisible by 4
+     */
     @Test
     public void nonLeapYears() {
-        LeapYear ly = new LeapYear();
-        Assertions.assertFalse(ly.isLeapYear(2017));
+        // Not divisible by 4
+        assertFalse(systemUnderTest.isLeapYear(2015));
+        assertFalse(systemUnderTest.isLeapYear(2017));
+
+        // Divisible by 4, divisible by 100, but not divisible by 400
+        assertFalse(systemUnderTest.isLeapYear(1500));
+        assertFalse(systemUnderTest.isLeapYear(1900));
+    }
+
+    /**
+     * Fourth Partition: divisible by 4, divisible by 100, but not divisible by 400
+     */
+    @Test
+    public void nonLeapCenturialYears() {
+        assertFalse(systemUnderTest.isLeapYear(1500));
+        assertFalse(systemUnderTest.isLeapYear(1900));
     }
 }
