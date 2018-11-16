@@ -4,15 +4,12 @@ public class CaesarShiftCipher {
 
     public String CaesarShiftCipher(String message, int shift){
         StringBuilder sb = new StringBuilder();
-        char currentChar;
-        int length = message.length();
-
         shift = shift%26;
 
-        for(int i = 0; i < length; i++){
-            currentChar = message.charAt(i);
+        for(int i = 0; i < message.length(); i++){
+            char currentChar = message.charAt(i);
            
-            sb.append(currentChar);
+//            sb.append(currentChar);
             if (currentChar > 'z' || currentChar < 'a') {
                 return "invalid";
             } else if ((char) (currentChar + shift) > 'z') {
