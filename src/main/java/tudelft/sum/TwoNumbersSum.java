@@ -20,9 +20,12 @@ class TwoNumbersSum {
             complement = 0;
             if (total >= 10){
                 complement = 1;
-                total -= 10;
+                total %= 10;
             }
             result.add(i, total);
+        }
+        if (complement != 0) {
+            result.add(result.size()  , complement);
         }
 
         Collections.reverse(result);
