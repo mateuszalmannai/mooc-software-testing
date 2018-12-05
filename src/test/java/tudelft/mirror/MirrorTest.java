@@ -13,6 +13,7 @@ public class MirrorTest {
         assertThat(sut.mirrorEnds("abXYZba")).toString().equals("ab");
         assertThat(sut.mirrorEnds("abca")).toString().equals("a");
         assertThat(sut.mirrorEnds("aba")).toString().equals("aba");
+        assertThat(sut.mirrorEnds("abcdedcba")).toString().equals("abcd");
 
     }
 }
